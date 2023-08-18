@@ -1,10 +1,15 @@
 import UserCard from '@/components/cards/UserCard';
+import Pagination from '@/components/shared/Pagination';
 import Searchbar from '@/components/shared/Searchbar';
 import { fetchUser, fetchUsers } from '@/lib/actions/user.actions';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
-async function Page() {
+async function Page({
+	searchParams,
+}: {
+	searchParams: { [key: string]: string | undefined };
+}) {
 	const user = await currentUser();
 
 	if (!user) return null;
